@@ -25,8 +25,7 @@ export async function getUserEmail(req, res) {
   const email = res.locals.email;
 
   try {
-    const userExists = await colUsers.findOne({ email: email.email });
-
+    const userExists = await colUsers.findOne({ email });
     if (userExists) {
       res.status(401).send({ message: "E-mail já cadastrado." });
       return;

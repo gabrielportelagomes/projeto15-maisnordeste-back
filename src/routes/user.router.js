@@ -6,6 +6,6 @@ import { emailSchemaValidation } from "../middlewares/emailSchemaValidation.midd
 const userRouter = Router();
 
 userRouter.post("/sign-up", userSchemaValidation, postSignUp);
-userRouter.get("/user-email", emailSchemaValidation, getUserEmail);
+userRouter.get("/users/:email", emailSchemaValidation, getUserEmail);
 
 export default userRouter;
