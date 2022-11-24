@@ -20,3 +20,21 @@ export async function postSignUp(req, res) {
     res.sendStatus(500);
   }
 }
+
+export async function getUserEmail(req, res) {
+  const email = res.locals.email;
+
+  try {
+    const userExists = await colUsers.findOne({ email: email.email });
+
+    if (userExists) {
+      res.status(401).send({ message: "E-mail já cadastrado." });
+      return;
+    }
+
+    res.sendStatus(201);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+}
