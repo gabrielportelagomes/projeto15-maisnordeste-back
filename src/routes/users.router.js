@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { postSignUp, getUserEmail } from "../controllers/users.controllers.js";
+import { postSignUp, getUserEmail, getUser } from "../controllers/users.controllers.js";
 import { userSchemaValidation } from "../middlewares/userSchemaValidation.middleware.js";
 import { emailSchemaValidation } from "../middlewares/emailSchemaValidation.middleware.js";
 import { authRoutesValidation } from "../middlewares/authValidation.middleware.js";
@@ -10,5 +10,7 @@ userRouter.post("/sign-up", userSchemaValidation, postSignUp);
 userRouter.get("/users/:email", emailSchemaValidation, getUserEmail);
 
 userRouter.use(authRoutesValidation);
+
+userRouter.get("/users", getUser);
 
 export default userRouter;
