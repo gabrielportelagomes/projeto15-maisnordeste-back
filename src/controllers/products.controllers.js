@@ -10,3 +10,16 @@ export async function postProducts(req, res) {
     res.sendStatus(500);
   }
 }
+
+export async function getProducts(req, res) {
+  const validState = res.locals.validatedState;
+  try {
+    const productsFromState = await colProducts
+      .find({ state: validState })
+      .toArray();
+    res.status(200).send(productsFromState);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+}
