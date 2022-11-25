@@ -1,7 +1,7 @@
 import { colUsers } from "../database/collections.js";
 import bcrypt from "bcrypt";
 
-export async function authValidation(req, res, next) {
+export async function signInValidation(req, res, next) {
   const { email, password } = req.body;
 
   try {

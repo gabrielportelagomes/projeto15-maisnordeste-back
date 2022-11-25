@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { postSignUp, getUserEmail } from "../controllers/user.controllers.js";
+import { postSignUp, getUserEmail } from "../controllers/users.controllers.js";
 import { userSchemaValidation } from "../middlewares/userSchemaValidation.middleware.js";
 import { emailSchemaValidation } from "../middlewares/emailSchemaValidation.middleware.js";
 
