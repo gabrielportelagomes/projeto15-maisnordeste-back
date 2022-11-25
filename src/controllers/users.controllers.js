@@ -37,3 +37,14 @@ export async function getUserEmail(req, res) {
     res.sendStatus(500);
   }
 }
+
+export async function getUser(req, res) {
+  const user = res.locals.user;
+
+  try {
+    res.send(user);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+}

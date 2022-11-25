@@ -1,21 +1,25 @@
-import { colUsers } from "../database/collections.js";
-import bcrypt from "bcrypt";
+import { colSessions, colUsers } from "../database/collections.js";
 
-export async function authValidation(req, res, next) {
-  const { email, password } = req.body;
+export async function authRoutesValidation(req, res, next) {
+  const { authorization } = req.headers;
+  const token = authorization?.replace("Bearer ", "");
+
+  if (!token) {
+    return res.status(401).send("Sessão não encontrada!");
+  }
 
   try {
-    const user = await colUsers.findOne({ email });
+    const session = await colSessions.findOne({ token });
+
+    const user = await colUsers.findOne({
+      _id: session?.userId,
+    });
 
     if (!user) {
-      return res.status(401).send({ message: "E-mail e/ou senha incorretos!" });
+      return res.status(401).send("Usuário não encontrado!");
     }
 
-    const passwordCheck = bcrypt.compareSync(password, user.password);
-
-    if (!passwordCheck) {
-      return res.status(401).send({ message: "E-mail e/ou senha incorretos!" });
-    }
+    delete user.password;
 
     res.locals.user = user;
   } catch (err) {
