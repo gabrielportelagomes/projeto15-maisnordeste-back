@@ -1,6 +1,5 @@
 import { Router } from "express";
 import {
-  getProduct,
   getProducts,
   postProducts,
 } from "../controllers/products.controllers.js";
@@ -11,6 +10,5 @@ const productsRouter = Router();
 
 productsRouter.post("/products", productsValidation, postProducts);
 productsRouter.get("/products/:state", stateValidation, getProducts);
-productsRouter.get("/produtcts/:idProduct", getProduct);
 
 export default productsRouter;
