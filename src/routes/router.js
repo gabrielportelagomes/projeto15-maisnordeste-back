@@ -4,6 +4,7 @@ import statesRouter from "./states.router.js";
 import usersRouter from "./users.router.js";
 import productsRouter from "./products.router.js";
 import activitiesRouter from "./activities.router.js";
+import productRouter from "./product.router.js";
 
 const router = Router();
 
@@ -12,5 +13,6 @@ router.use(authRouter);
 router.use(productsRouter);
 router.use(statesRouter);
 router.use(activitiesRouter);
+router.use(productRouter);
 
 export default router;
