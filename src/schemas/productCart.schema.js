@@ -12,11 +12,25 @@ export const productCartSchema = joi.object({
     .required(),
   season: joi
     .string()
-    .valid("Natal", "Carnaval", "Páscoa", "Revéillon", "Mai-Jun", "Set-Out")
+    .valid(
+      "Natal",
+      "Carnaval",
+      "Páscoa",
+      "Revéillon",
+      "Baixa Temporada 1",
+      "Baixa Temporada 2"
+    )
     .required(),
   seasonTag: joi
     .string()
-    .valid("natal", "carnaval", "pascoa", "reveillon", "baixaTemporada"),
+    .valid(
+      "natal",
+      "carnaval",
+      "pascoa",
+      "reveillon",
+      "baixaTemporada1",
+      "baixaTemporada2"
+    ),
   amount: joi.number().required(),
   breakfast: joi.boolean().required(),
   transport: joi.boolean().required(),
