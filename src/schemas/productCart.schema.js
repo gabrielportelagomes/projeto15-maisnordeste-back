@@ -28,8 +28,8 @@ export const productCartSchema = joi.object({
       "carnaval",
       "pascoa",
       "reveillon",
-      "baixaTemporada1",
-      "baixaTemporada2"
+      "Mai-Jun",
+      "Set-Out"
     ),
   amount: joi.number().required(),
   breakfast: joi.boolean().required(),
