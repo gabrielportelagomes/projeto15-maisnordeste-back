@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { ObjectId } from "mongodb";
 import { colOrders } from "../database/collections.js";
 
@@ -5,7 +6,7 @@ export async function postOrder(req, res) {
   const order = res.locals.validatedOrder;
 
   try {
-    await colOrders.insertOne(order);
+    await colOrders.insertOne({... order, date: dayjs().format("DD/MM/YYYY")});
 
     res.sendStatus(201);
   } catch (err) {
