@@ -4,6 +4,7 @@ export const orderSchema = joi.object({
   userId: joi.required(),
   payment: joi.string().valid("boleto", "credito", "pix").required(),
   total: joi.number().required(),
+  status: joi.string().required(),
   orders: joi.array().items(
     joi.object({
       subtotal: joi.number().required(),

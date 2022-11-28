@@ -3,10 +3,12 @@ import { colSessions, colUsers } from "../database/collections.js";
 export async function authRoutesValidation(req, res, next) {
   const { authorization } = req.headers;
   const token = authorization?.replace("Bearer ", "");
+  console.log(req.headers)
 
   if (!token) {
     return res.status(401).send("Sessão não encontrada!");
   }
+    
 
   try {
     const session = await colSessions.findOne({ token });

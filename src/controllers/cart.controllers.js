@@ -29,6 +29,18 @@ export async function getProductsOnCart(req, res) {
   }
 }
 
+export async function deleteCart(req, res) {
+  const user = res.locals.user;
+  const ids = res.locals.ids;
+  console.log(user);
+  try {
+    res.send();
+  }catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+}
+
 export async function putProductsOnCart(req, res) {
   const { id } = res.locals.authorizedUpdateId;
   const user = res.locals.user;
