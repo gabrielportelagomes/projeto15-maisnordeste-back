@@ -2,12 +2,13 @@ import { ObjectId } from "mongodb";
 import { orderSchema } from "../schemas/order.schema.js";
 
 export async function orderSchemaValidation(req, res, next) {
-  const { userId, total, orders } = req.body;
+  const { userId, total, payment, orders } = req.body;
 
   const { error } = orderSchema.validate(
     {
       userId,
       total,
+      payment,
       orders,
     },
     { abortEarly: false }
@@ -20,6 +21,7 @@ export async function orderSchemaValidation(req, res, next) {
   res.locals.validatedOrder = {
     userId: ObjectId(userId),
     total,
+    payment,
     orders,
   };
   next();
