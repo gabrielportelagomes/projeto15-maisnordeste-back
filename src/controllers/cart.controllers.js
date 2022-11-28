@@ -49,3 +49,14 @@ export async function putProductsOnCart(req, res) {
     res.sendStatus(500);
   }
 }
+
+export async function deleteProductOnCart(req, res) {
+  const { id } = res.locals.authorizedUpdateId;
+  try {
+    await colCart.deleteOne({ _id: ObjectId(id) });
+    res.status(200).send({ message: "Produto removido com sucesso!" });
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+}
