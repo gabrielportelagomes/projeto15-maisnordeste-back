@@ -17,7 +17,7 @@ export const orderSchema = joi.object({
         .required(),
       season: joi
         .string()
-        .valid("Natal", "Carnaval", "Páscoa", "Revéillon", "Mai-Jun", "Set-Out")
+        .valid("Natal", "Carnaval", "Páscoa", "Réveillon", "Mai-Jun", "Set-Out")
         .required(),
       seasonTag: joi
         .string()
