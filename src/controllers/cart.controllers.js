@@ -35,6 +35,38 @@ export async function deleteCart(req, res) {
   console.log(user);
   try {
     res.send();
+  }catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+}
+
+export async function putProductsOnCart(req, res) {
+  const { id } = res.locals.authorizedUpdateId;
+  const user = res.locals.user;
+
+  const { amount, subtotal } = res.locals.validatedCartUpdate;
+
+  try {
+    await colCart.updateOne(
+      { _id: ObjectId(id) },
+      { $set: { amount, subtotal } }
+    );
+    const productsOnCart = await colCart
+      .find({ user: ObjectId(user._id) })
+      .toArray();
+    res.status(200).send(productsOnCart);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+}
+
+export async function deleteProductOnCart(req, res) {
+  const { id } = res.locals.authorizedUpdateId;
+  try {
+    await colCart.deleteOne({ _id: ObjectId(id) });
+    res.status(200).send({ message: "Produto removido com sucesso!" });
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
