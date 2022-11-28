@@ -3,6 +3,7 @@ import {
   getProductsOnCart,
   postProductOnCart,
   putProductsOnCart,
+  deleteProductOnCart,
 } from "../controllers/cart.controllers.js";
 import { authRoutesValidation } from "../middlewares/authValidation.middleware.js";
 import { productCartSchemaValidation } from "../middlewares/productCartSchemaValidation.middleware.js";
@@ -21,6 +22,10 @@ cartRouter.put(
   productOnCartUpdateAuthorization,
   putProductsOnCart
 );
-//cartRouter.delete("/cart/:id", deleteProductOnCart)
+cartRouter.delete(
+  "/cart/:id",
+  productOnCartUpdateAuthorization,
+  deleteProductOnCart
+);
 
 export default cartRouter;
