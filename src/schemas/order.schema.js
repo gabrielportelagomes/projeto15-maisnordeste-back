@@ -2,7 +2,7 @@ import joi from "joi";
 
 export const orderSchema = joi.object({
   userId: joi.required(),
-  payment: joi.string().valid("boleto", "credito", "pix").required(),
+  payment: joi.string().valid("boleto", "crédito", "pix").required(),
   total: joi.number().required(),
   status: joi.string().required(),
   orders: joi.array().items(
