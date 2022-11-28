@@ -27,3 +27,16 @@ export async function getOrders(req, res) {
     res.sendStatus(500);
   }
 }
+
+export async function getOrder(req, res) {
+  const id = res.locals.id;
+
+  try {
+    const order = await colOrders.findOne({ _id: ObjectId(id) });
+
+    res.status(201).send(order);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+}
