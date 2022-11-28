@@ -8,6 +8,11 @@ export async function productOnCartUpdateAuthorization(req, res, next) {
   try {
     const product = await colCart.findOne({ _id: ObjectId(id) });
 
+    if (!product) {
+      res.status(404).send({ message: "Produto não encontrado!" });
+      return;
+    }
+
     if (product.user.toString() !== user._id.toString()) {
       res.status(401).send({ message: "Usuário não autorizado." });
       return;
