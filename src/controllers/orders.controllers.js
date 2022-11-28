@@ -21,7 +21,7 @@ export async function getOrders(req, res) {
   try {
     const orders = await colOrders.find({ userId: ObjectId(user._id) }).toArray();
 
-    res.status(201).send(orders);
+    res.status(201).send(orders.reverse());
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
