@@ -5,7 +5,7 @@ export async function deleteSession(req, res) {
   const user = res.locals.user;
 
   try {
-    const states = await colSessions.deleteOne({ userId: ObjectId(user._id) });
+    await colSessions.deleteOne({ userId: ObjectId(user._id) });
 
     res.sendStatus(201);
   } catch (err) {
